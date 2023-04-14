@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "323501854694",
+    "project_id": "fortuneproject-196ff",
+    "storage_bucket": "fortuneproject-196ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323501854694:android:e13a51635bddd276eb9027",
+        "android_client_info": {
+          "package_name": "com.example.featureregistrationimpl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "323501854694-qefdbtsi9i29bt2jf6fepigp70tlnjn0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSQ-9KcuxXwQxcrRa9HNbzMAoRrw96yEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "323501854694-qefdbtsi9i29bt2jf6fepigp70tlnjn0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

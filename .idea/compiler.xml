@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="Fortune_Project.app" target="11" />
+      <module name="Fortune_Project.base" target="11" />
+      <module name="Fortune_Project.common" target="11" />
+      <module name="Fortune_Project.feature-registration-impl" target="11" />
+      <module name="Fortune_Project.mylibrary" target="11" />
+      <module name="Fortune_Project.network" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Fortune Project"
 include ':app'
+include ':feature-registration-impl'
+include ':feature-registration-api'
+include ':network'
+include ':base'
