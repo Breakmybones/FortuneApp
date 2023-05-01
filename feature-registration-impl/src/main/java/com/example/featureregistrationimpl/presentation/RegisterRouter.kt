@@ -4,5 +4,5 @@ import android.content.Context
 
 interface RegisterRouter {
 
-    fun openHome(context: Context)
+    fun openHome()
 }

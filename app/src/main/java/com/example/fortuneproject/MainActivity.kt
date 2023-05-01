@@ -19,16 +19,15 @@ class MainActivity : AppCompatActivity() {
     lateinit var navigator: Navigator
     private var binding: ActivityMainBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
+        App.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
         }
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-//        navigator = Navigator()
         navigator.initialize(navController)
         navigator.attachNavController(navController, R.navigation.main_nav_graph)
-        Log.e("activity", navController.toString())
     }
 
     companion object {

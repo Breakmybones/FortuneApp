@@ -5,14 +5,13 @@ import java.time.Instant
 
 interface UserRepository {
 
-    suspend fun loginUser(login: String?, password: String?): UserModel
+    suspend fun loginUser(email: String?, password: String?): UserModel
 
     suspend fun registerUser(
         username: String?,
-        login: String?,
+        email: String?,
         password: String?,
-        dayOfBirth: Instant?,
+        dayOfBirth: String?,
         male: Boolean?,
-        icon: String?
     )
 }

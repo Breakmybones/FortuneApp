@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragment.HomeFragment"
+    android:background="@drawable/gradient_background">
+
+
+    <TextView
+        android:id="@+id/tv_today"
+        style="@style/SimpleTextStyle"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="111dp"
+        android:text="Сегодня"
+        android:textSize="26sp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/tv_date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        style="@style/SimpleTextStyle"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="20dp"
+        android:text="01.01.1001"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_today"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_click"
+        style="@style/SimpleTextStyle"
+        android:layout_marginTop="140dp"
+        android:text="Нажмите, чтобы увидеть значение"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/iv_first_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <View
+        android:id="@+id/main_view"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@drawable/white_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="92dp" />
+
+    <View
+        android:id="@+id/btn_color"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="@drawable/day_color"
+        app:layout_constraintBottom_toTopOf="@+id/btn_yes"
+        app:layout_constraintEnd_toStartOf="@+id/btn_digit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/main_view" />
+
+    <View
+        android:id="@+id/btn_digit"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="@drawable/day_yes"
+        app:layout_constraintBottom_toTopOf="@+id/btn_yes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_color"
+
+        app:layout_constraintTop_toTopOf="@id/main_view" />
+
+    <View
+        android:id="@+id/btn_yes"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="@drawable/day_cookie"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_cookie"
+        app:layout_constraintTop_toBottomOf="@id/btn_digit"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/btn_cookie"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="@drawable/day_digit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_yes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_color" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/color"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_color"
+        app:layout_constraintEnd_toEndOf="@+id/btn_color"
+        app:layout_constraintStart_toStartOf="@+id/btn_color"
+        app:layout_constraintTop_toTopOf="@+id/btn_color" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/chance"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_yes"
+        app:layout_constraintEnd_toEndOf="@+id/btn_yes"
+        app:layout_constraintStart_toStartOf="@+id/btn_yes"
+        app:layout_constraintTop_toTopOf="@+id/btn_yes" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/cookie"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_cookie"
+        app:layout_constraintEnd_toEndOf="@+id/btn_cookie"
+        app:layout_constraintStart_toStartOf="@+id/btn_cookie"
+        app:layout_constraintTop_toTopOf="@+id/btn_cookie" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/cube"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_digit"
+        app:layout_constraintEnd_toEndOf="@+id/btn_digit"
+        app:layout_constraintStart_toStartOf="@+id/btn_digit"
+        app:layout_constraintTop_toTopOf="@+id/btn_digit" />
+
+    <TextView
+        android:id="@+id/tv_color"
+        style="@style/SimpleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="80dp"
+        android:text="Цвет дня"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_color"
+        app:layout_constraintEnd_toEndOf="@+id/btn_color"
+        app:layout_constraintStart_toStartOf="@+id/btn_color"
+        app:layout_constraintTop_toTopOf="@+id/btn_color" />
+
+    <TextView
+        android:id="@+id/tv_digit"
+        style="@style/SimpleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="80dp"
+        android:text="Число дня"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_digit"
+        app:layout_constraintEnd_toEndOf="@+id/btn_digit"
+        app:layout_constraintStart_toStartOf="@+id/btn_digit"
+        app:layout_constraintTop_toTopOf="@+id/btn_digit" />
+
+    <TextView
+        android:id="@+id/tv_yes"
+        style="@style/SimpleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="80dp"
+        android:text="Да или Нет"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_yes"
+        app:layout_constraintEnd_toEndOf="@+id/btn_yes"
+        app:layout_constraintStart_toStartOf="@+id/btn_yes"
+        app:layout_constraintTop_toTopOf="@+id/btn_yes" />
+
+    <TextView
+        android:id="@+id/tv_cookie"
+        style="@style/SimpleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="80dp"
+        android:text="Печенье"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_cookie"
+        app:layout_constraintEnd_toEndOf="@+id/btn_cookie"
+        app:layout_constraintStart_toStartOf="@+id/btn_cookie"
+        app:layout_constraintTop_toTopOf="@+id/btn_cookie" />
+
+    <ImageView
+        android:id="@+id/iv_second_card"
+        android:layout_width="120dp"
+        android:layout_height="240dp"
+        android:src="@drawable/secondcard"
+        app:layout_constraintBottom_toTopOf="@+id/main_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_click" />
+
+    <ImageView
+        android:id="@+id/iv_third_card"
+        android:layout_width="120dp"
+        android:layout_height="240dp"
+        android:src="@drawable/secondcard"
+        app:layout_constraintBottom_toTopOf="@+id/main_view"
+        app:layout_constraintStart_toEndOf="@+id/iv_second_card"
+        app:layout_constraintTop_toBottomOf="@+id/tv_click" />
+
+    <ImageView
+        android:id="@+id/iv_fourth_card"
+        android:layout_width="120dp"
+        android:layout_height="240dp"
+        android:src="@drawable/secondcard"
+        app:layout_constraintBottom_toTopOf="@+id/main_view"
+        app:layout_constraintEnd_toStartOf="@+id/iv_first_card"
+        app:layout_constraintTop_toBottomOf="@+id/tv_click"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/iv_first_card"
+        android:layout_width="120dp"
+        android:layout_height="240dp"
+        android:src="@drawable/secondcard"
+        app:layout_constraintBottom_toTopOf="@+id/main_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_click"
+        app:layout_constraintStart_toEndOf="iv"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

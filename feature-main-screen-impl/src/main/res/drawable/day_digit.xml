@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Установка цвета фона (белый) -->
+    <solid android:color="#7ECF82"/>
+
+    <!-- Установка радиуса закругления углов только у верхних двух углов -->
+    <corners android:radius="18dp"
+        android:topRightRadius="18dp"/>
+
+</shape>

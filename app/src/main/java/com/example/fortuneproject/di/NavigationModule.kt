@@ -1,5 +1,6 @@
 package com.example.fortuneproject.di
 
+import com.example.feature_main_screen_impl.presentation.di.MainRouter
 import com.example.featureregistrationimpl.presentation.LoginRouter
 import com.example.featureregistrationimpl.presentation.RegisterRouter
 import com.example.featureregistrationimpl.presentation.di.ApplicationScope
@@ -21,4 +22,8 @@ class NavigationModule {
     @ApplicationScope
     @Provides
     fun provideRegisterRouter(navigator: Navigator): RegisterRouter = navigator
+
+    @ApplicationScope
+    @Provides
+    fun provideHomeRouter(navigator: Navigator): MainRouter = navigator
 }

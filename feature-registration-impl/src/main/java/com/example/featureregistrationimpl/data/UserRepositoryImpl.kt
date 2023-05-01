@@ -4,38 +4,34 @@ import com.example.feature_registration_api.domain.interfaces.UserRepository
 import com.example.feature_registration_api.domain.model.UserModel
 import com.example.featureregistrationimpl.di.TaroApi
 import com.example.featureregistrationimpl.di.UserResponse
-import java.time.Instant
 
 class UserRepositoryImpl(
     private val api: TaroApi
 ): UserRepository {
-    override suspend fun loginUser(login: String?, password: String?): UserModel {
-        val response = api.loginUser(login, password)
+    override suspend fun loginUser(email: String?, password: String?): UserModel {
+        val response = api.loginUser(email, password)
         return UserModel(
             username = response.username,
-            login = response.login,
+            email = response.email,
             password = response.password,
             dayOfBirth = response.birth.toString(),
             male = response.male,
-            icon = response.icon
         )
     }
 
     override suspend fun registerUser(
         username: String?,
-        login: String?,
+        email: String?,
         password: String?,
-        dayOfBirth: Instant?,
+        dayOfBirth: String?,
         male: Boolean?,
-        icon: String?
     ) {
         val userResponse = UserResponse(
             username = username,
-            login = login,
+            email = email,
             password = password,
             birth = dayOfBirth,
             male = male,
-            icon = icon
         )
         api.registerUser(userResponse)
     }

@@ -1,5 +1,6 @@
 package com.example.featureregistrationimpl.presentation
 
+import android.widget.Toast
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -10,13 +11,10 @@ import kotlinx.coroutines.launch
 import java.time.Instant
 
 class RegistrationViewModel(
+    private val router: RegisterRouter,
     private val registerUserUseCase: RegisterUserUseCase,
     private val loginUserUseCase: LoginUserUseCase
 ): ViewModel() {
-
-    private val _register = MutableLiveData<UserModel?>(null)
-    val register: LiveData<UserModel?>
-        get() = _register
 
     private val _error = MutableLiveData<Throwable?>(null)
     val error: LiveData<Throwable?>
@@ -26,30 +24,25 @@ class RegistrationViewModel(
     val user: LiveData<UserModel?>
         get() = _user
 
-    private val _navigation = SingleLiveEvent<UserModel?>()
-    val navigation: SingleLiveEvent<UserModel?>
-        get() = _navigation
-
     fun registerUser(
         username: String?,
-        login: String?,
+        email: String?,
         password: String?,
-        dayOfBirth: Instant?,
+        dayOfBirth: String?,
         male: Boolean?,
-        icon: String?
     ) {
         viewModelScope.launch {
             try {
                 registerUserUseCase(
                     username = username,
-                    login = login,
+                    email = email,
                     password = password,
                     dayOfBirth = dayOfBirth,
                     male = male,
-                    icon = icon
                 )
-                if (!loginUserUseCase(login, password).login.toString().isNullOrEmpty())
-                    _navigation.value = loginUserUseCase(login, password)
+                if (!loginUserUseCase(email, password).email.toString().isNullOrEmpty())
+                    _user.value = loginUserUseCase(email, password)
+//                router.openHome()
             }
             catch (error: Throwable) {
                 _error.value = error
@@ -59,11 +52,13 @@ class RegistrationViewModel(
 
     companion object {
         fun provideFactory(
+            router: RegisterRouter,
             registerUserUseCase: RegisterUserUseCase,
             loginUserUseCase: LoginUserUseCase
         ): ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 RegistrationViewModel(
+                    router,
                     registerUserUseCase,
                     loginUserUseCase
                 )

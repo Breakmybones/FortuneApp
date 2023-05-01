@@ -4,11 +4,29 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/app/src/main/res/xml/network_security_config.xml" value="0.20153985507246377" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/base/src/main/res/drawable/btn_background.xml" value="0.1" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/base/src/main/res/drawable/day_color.xml" value="0.2005" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/base/src/main/res/drawable/day_cookie.xml" value="0.2005" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/base/src/main/res/drawable/day_digit.xml" value="0.2005" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/base/src/main/res/drawable/day_yes.xml" value="0.2005" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/base/src/main/res/drawable/et_background.xml" value="0.1" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/base/src/main/res/drawable/gradient_background.xml" value="0.2005" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/base/src/main/res/drawable/white_background.xml" value="0.2005" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/base/src/main/res/layout/fragment_blank.xml" value="0.1" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-main-screen-impl/src/main/res/drawable/collapsing_tool_bar.xml" value="0.1" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-main-screen-impl/src/main/res/drawable/day_digit.xml" value="0.2005" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-main-screen-impl/src/main/res/drawable/day_yes.xml" value="0.2005" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-main-screen-impl/src/main/res/layout/fragment_blank.xml" value="0.1" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-main-screen-impl/src/main/res/layout/fragment_card.xml" value="0.136" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-main-screen-impl/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-main-screen-impl/src/main/res/layout/taro_item.xml" value="0.13323201621073963" />
         <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-registration-impl/src/main/res/drawable/btn_background.xml" value="0.1" />
         <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-registration-impl/src/main/res/drawable/et_background.xml" value="0.1" />
         <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-registration-impl/src/main/res/drawable/gradient_background.xml" value="0.1" />
-        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-registration-impl/src/main/res/layout/fragment_login.xml" value="0.264" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-registration-impl/src/main/res/layout/fragment_login.xml" value="0.2" />
         <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-registration-impl/src/main/res/layout/fragment_registration.xml" value="0.264" />
+        <entry key="..\:/Users/Dinara/AndroidStudioProjects/FortuneProject2/feature-registration-impl/src/main/res/layout/taro_item.xml" value="0.176" />
       </map>
     </option>
   </component>

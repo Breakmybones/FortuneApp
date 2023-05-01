@@ -1,6 +1,7 @@
 package com.example.fortuneproject
 
 import android.content.Context
+import com.example.feature_main_screen_impl.presentation.di.MainScreenComponent
 import com.example.featureregistrationimpl.presentation.LoginFragment
 import com.example.featureregistrationimpl.presentation.LoginRouter
 import com.example.featureregistrationimpl.presentation.RegistrationFragment
@@ -20,7 +21,7 @@ import javax.inject.Singleton
         NetworkModule::class,
         NavigationModule::class,
         AppModule::class,
-        SubcomponentsModule::class
+        SubcomponentsModule::class,
     ]
 )
 interface AppComponent: MainDependencies {
@@ -35,27 +36,14 @@ interface AppComponent: MainDependencies {
 
     fun registerComponent(): RegistrationComponent.Builder
 
-//    fun init(activity: AppCompatActivity, deps: AppDependencies): AppComponent {
-//        return DaggerAppComponent.factory().create(activity, deps)
-//    }
+    fun mainScreenComponent(): MainScreenComponent.Builder
+
+    fun inject(activity: MainActivity)
 
     @Component.Builder
     interface Builder {
         @BindsInstance
         fun context(context: Context): Builder
-//        @BindsInstance
-//        fun router(loginRouter: LoginRouter): Builder
-
         fun build(): AppComponent
     }
-
-//    @Component.Factory
-//    interface Factory {
-//        fun create(
-//            @BindsInstance activity: AppCompatActivity,
-//            deps: AppDependencies
-//        ): AppComponent
-//    }
-
-
 }

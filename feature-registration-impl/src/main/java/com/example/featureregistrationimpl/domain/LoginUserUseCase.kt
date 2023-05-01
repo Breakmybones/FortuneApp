@@ -11,11 +11,11 @@ class LoginUserUseCase(
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) {
     suspend operator fun invoke(
-        login: String?,
+        email: String?,
         password: String?
     ): UserModel {
         return withContext(dispatcher) {
-            userRepository.loginUser(login, password)
+            userRepository.loginUser(email, password)
         }
     }
 }

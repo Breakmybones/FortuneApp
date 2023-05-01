@@ -1,11 +1,13 @@
 package com.example.fortuneproject
 
 import android.app.Application
+import com.example.feature_main_screen_impl.presentation.di.MainScreenComponent
+import com.example.feature_main_screen_impl.presentation.di.MainScreenComponentProvider
 import com.example.featureregistrationimpl.presentation.di.RegistrationComponent
 import com.example.featureregistrationimpl.presentation.di.RegistrationComponentProvider
 import timber.log.Timber
 
-open class App: Application(), RegistrationComponentProvider {
+open class App: Application(), RegistrationComponentProvider, MainScreenComponentProvider {
 
     override fun onCreate() {
         super.onCreate()
@@ -16,21 +18,18 @@ open class App: Application(), RegistrationComponentProvider {
         appComponent = DaggerAppComponent
             .builder()
             .context(applicationContext)
-//            .router(Navigator())
             .build()
-
     }
     companion object {
         lateinit var appComponent: AppComponent
     }
 
-//    override fun provideRegistrationComponent(): RegistrationComponent {
-//        TODO("Not yet implemented")
-//    }
-
-
     override fun provideRegistrationComponent(): RegistrationComponent {
         return appComponent.registerComponent().build()
+    }
+
+    override fun provideMainScreenComponent(): MainScreenComponent {
+        return  appComponent.mainScreenComponent().build()
     }
 
 }

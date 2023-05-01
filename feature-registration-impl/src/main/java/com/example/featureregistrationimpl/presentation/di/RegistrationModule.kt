@@ -5,8 +5,6 @@ import com.example.featureregistrationimpl.data.UserRepositoryImpl
 import com.example.featureregistrationimpl.di.TaroApi
 import com.example.featureregistrationimpl.domain.LoginUserUseCase
 import com.example.featureregistrationimpl.domain.RegisterUserUseCase
-import com.example.featureregistrationimpl.presentation.LoginRouter
-import com.example.featureregistrationimpl.presentation.LoginViewModel
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -34,6 +32,4 @@ class RegistrationModule {
         repository: UserRepository
     ): LoginUserUseCase = LoginUserUseCase(repository)
 
-//    @Provides
-//    fun provideLoginRouter(): LoginRouter = navigator
 }

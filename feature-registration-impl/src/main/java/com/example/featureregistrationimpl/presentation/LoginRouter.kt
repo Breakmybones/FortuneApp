@@ -7,7 +7,7 @@ interface LoginRouter {
 
     fun openRegister()
 
-    fun openHome(context: Context)
+    fun openHome()
 
     fun openLogin(context: Context)
 }

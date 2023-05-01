@@ -14,20 +14,18 @@ class RegisterUserUseCase(
 ) {
     suspend operator fun invoke(
         username: String?,
-        login: String?,
+        email: String?,
         password: String?,
-        dayOfBirth: Instant?,
+        dayOfBirth: String?,
         male: Boolean?,
-        icon: String?
     ) {
         withContext(dispatcher) {
             userRepository.registerUser(
                 username = username,
-                login = login,
+                email = email,
                 password = password,
                 dayOfBirth = dayOfBirth,
-                male = male,
-                icon = icon
+                male = male
             )
         }
     }

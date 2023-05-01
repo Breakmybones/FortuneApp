@@ -11,28 +11,25 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val router: LoginRouter,
-    private val loginUserUseCase: LoginUserUseCase
+    private val loginUserUseCase: LoginUserUseCase,
 ): ViewModel() {
 
-    private val _user = MutableLiveData<UserModel?>(null)
-    val user: LiveData<UserModel?>
-        get() = _user
 
-    private val _navigation = SingleLiveEvent<String?>()
-    val navigation: SingleLiveEvent<String?>
-        get() = _navigation
+    private val _userLiveData = MutableLiveData<UserModel?>(null)
+    val userLiveData: LiveData<UserModel?>
+        get() = _userLiveData
 
     private val _error = MutableLiveData<Throwable?>(null)
     val error: LiveData<Throwable?>
         get()  = _error
 
 
-    fun loginUser(context: Context, login: String, password: String) {
+    fun loginUser(context: Context, email: String, password: String) {
         viewModelScope.launch {
             try {
-                if (!loginUserUseCase(login, password).login.isNullOrEmpty())
-                    _user.value = loginUserUseCase(login, password)
-                    router.openHome(context)
+                if (!loginUserUseCase(email, password).username.isNullOrEmpty()) {
+                    _userLiveData.value = loginUserUseCase(email, password)
+                }
             }
             catch (error: Throwable) {
                 _error.value = error
@@ -41,19 +38,32 @@ class LoginViewModel(
     }
 
     fun registerClick() {
-        Log.e("trash", "content")
         router.openRegister()
+    }
+
+    fun loginClick(context: Context, email: String, password: String) {
+        viewModelScope.launch {
+            try {
+                if (!loginUserUseCase(email, password).email.isNullOrEmpty())
+                    _userLiveData.value = loginUserUseCase(email, password)
+                router.openHome()
+            }
+            catch (error: Throwable) {
+                _error.value = error
+            }
+        }
+        router.openHome()
     }
 
     companion object {
         fun provideFactory(
             router: LoginRouter,
-            loginUserUseCase: LoginUserUseCase
+            loginUserUseCase: LoginUserUseCase,
         ): ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 LoginViewModel(
                     router,
-                    loginUserUseCase
+                    loginUserUseCase,
                 )
             }
         }
