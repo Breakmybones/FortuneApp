@@ -46,6 +46,7 @@ dependencies {
     implementation project(':feature-main-screen-api')
     implementation project(':network')
     implementation project(':base')
+    implementation project(':database')
 
     // region Network
     def retrofit = '2.9.0'

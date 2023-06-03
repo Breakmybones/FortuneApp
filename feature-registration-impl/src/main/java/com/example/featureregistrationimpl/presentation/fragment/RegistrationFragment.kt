@@ -1,12 +1,8 @@
-package com.example.featureregistrationimpl.presentation
+package com.example.featureregistrationimpl.presentation.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.text.BoringLayout
-import android.util.Patterns
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,6 +11,8 @@ import com.example.featureregistrationimpl.R
 import com.example.featureregistrationimpl.databinding.FragmentRegistrationBinding
 import com.example.featureregistrationimpl.domain.LoginUserUseCase
 import com.example.featureregistrationimpl.domain.RegisterUserUseCase
+import com.example.featureregistrationimpl.presentation.di.RegisterRouter
+import com.example.featureregistrationimpl.presentation.RegistrationViewModel
 import com.example.featureregistrationimpl.presentation.di.RegistrationComponentProvider
 import javax.inject.Inject
 
@@ -64,28 +62,12 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         binding?.apply {
             val male = arrayOf("Женщина", "Мужчина")
             var flag = true
-            val userName = etName.toString()
-            val userEmail = etEmail.toString()
-            val userPassword = etPassword.toString()
-            val userBirth = etBirth.toString()
-            val userPassword2 = etPassword2.toString()
-//            val arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, male)
-//            etMale.adapter = arrayAdapter
-//            etMale.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//                override fun onItemSelected(
-//                    parent: AdapterView<*>?,
-//                    view: View?,
-//                    position: Int,
-//                    id: Long,
-//                ) {
-//                }
-//
-//                override fun onNothingSelected(parent: AdapterView<*>?) {
-//                    TODO("Not yet implemented")
-//                }
-//
-//            }
-//            val userMale: Boolean = etMale.toString() != "Женщина"
+            val userName = etName.text.toString()
+            val userEmail = etEmail.text.toString()
+            val userPassword = etPassword.text.toString()
+            val userBirth = etBirth.text.toString()
+            val userPassword2 = etPassword2.text.toString()
+
             val userMale: Boolean =  etMale.selectedItem.toString() != "Женщина"
             if (userName.isNullOrEmpty()) {
                 etName.error = "Заполните имя"
@@ -96,39 +78,40 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
                 etPassword.error = "Заполните пароль"
                 flag = false
             }
-//            if (!checkEmail(email = userEmail)) {
-//                etEmail.error = "Введите правильный адрес"
-//                flag = false
-//            }
+            if (!checkEmail(email = userEmail)) {
+                etEmail.error = "Введите правильный адрес"
+                flag = false
+            }
             if (userBirth.isEmpty()) {
                 etBirth.error = "Заполните дату рождения"
                 etBirth.requestFocus()
                 flag = false
             }
-//            if (userPassword != userPassword2) {
-//                Toast.makeText(
-//                    requireContext(),
-//                    "Пароли не сопадают",
-//                    Toast.LENGTH_SHORT).show()
-//                flag = false
-//            }
+            if (userPassword != userPassword2) {
+                Toast.makeText(
+                    requireContext(),
+                    "Пароли не сопадают",
+                    Toast.LENGTH_SHORT).show()
+                flag = false
+            }
             if (flag) {
                 viewModel.registerUser(userName, userEmail, userPassword, userBirth, userMale)
-                Toast.makeText(requireContext(), "зареган", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Регистрация прошла", Toast.LENGTH_SHORT).show()
+                router.openHome()
             }
         }
     }
 
-//    private fun checkEmail(email: String): Boolean {
-//        var flag = true
-//        if (email.isEmpty()) {
-//            flag = false
-//        }
-//        if (!email.contains("@")) {
-//            flag = false
-//        }
-//        return flag
-//    }
+    private fun checkEmail(email: String): Boolean {
+        var flag = true
+        if (email.isEmpty()) {
+            flag = false
+        }
+        if (!email.contains("@")) {
+            flag = false
+        }
+        return flag
+    }
 
     private fun observeViewModel() {
         with(viewModel) {

@@ -4,12 +4,14 @@ import android.content.Context
 import android.util.Log
 import androidx.navigation.NavController
 import com.example.feature_main_screen_impl.presentation.di.MainRouter
-import com.example.featureregistrationimpl.presentation.LoginRouter
-import com.example.featureregistrationimpl.presentation.RegisterRouter
+import com.example.feature_profile_screen_impl.presentation.di.EditProfileRouter
+import com.example.feature_profile_screen_impl.presentation.di.ProfileRouter
+import com.example.featureregistrationimpl.presentation.di.LoginRouter
+import com.example.featureregistrationimpl.presentation.di.RegisterRouter
 import com.example.fortuneproject.MainActivity
 import com.example.fortuneproject.R
 
-class Navigator: LoginRouter, RegisterRouter, MainRouter {
+class Navigator: LoginRouter, RegisterRouter, MainRouter, ProfileRouter, EditProfileRouter {
 
     private var navController: NavController? = null
 
@@ -33,6 +35,7 @@ class Navigator: LoginRouter, RegisterRouter, MainRouter {
     }
 
     override fun openHome() {
+        Log.e("navigator", navController.toString())
         navController?.navigate(R.id.home_fragment)
     }
 
@@ -41,7 +44,7 @@ class Navigator: LoginRouter, RegisterRouter, MainRouter {
     }
 
     override fun openProfile() {
-        TODO("Not yet implemented")
+        navController?.navigate(R.id.profile_fragment)
     }
 
     override fun openFortune() {
@@ -61,19 +64,27 @@ class Navigator: LoginRouter, RegisterRouter, MainRouter {
     }
 
     override fun openColor() {
-        TODO("Not yet implemented")
+        navController?.navigate(R.id.color_fragment)
     }
 
     override fun openDigit() {
-        TODO("Not yet implemented")
+        navController?.navigate(R.id.digit_fragment)
     }
 
     override fun openYesOrNo() {
-        TODO("Not yet implemented")
+        navController?.navigate(R.id.yes_fragment)
     }
 
     override fun openCookie() {
-        TODO("Not yet implemented")
+        navController?.navigate(R.id.cookie_fragment)
     }
 
+    override fun openChangeProfile() {
+        navController?.navigate(R.id.edit_profile_fragment)
+    }
+
+    override fun openHomeFragment() {
+        Log.e("navigator", navController.toString())
+        navController?.navigate(R.id.home_fragment)
+    }
 }

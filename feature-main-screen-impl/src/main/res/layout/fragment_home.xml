@@ -37,14 +37,12 @@
     <TextView
         android:id="@+id/tv_click"
         style="@style/SimpleTextStyle"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="100dp"
         android:text="Нажмите, чтобы увидеть значение"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/iv_first_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
     <View
@@ -52,23 +50,26 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:background="@drawable/white_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="92dp" />
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/btn_color"
         android:layout_width="160dp"
         android:layout_height="160dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/day_color"
         app:layout_constraintBottom_toTopOf="@+id/btn_yes"
         app:layout_constraintEnd_toStartOf="@+id/btn_digit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/main_view" />
+        app:layout_constraintTop_toTopOf="@+id/main_view" />
 
     <View
         android:id="@+id/btn_digit"
         android:layout_width="160dp"
         android:layout_height="160dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/day_yes"
         app:layout_constraintBottom_toTopOf="@+id/btn_yes"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +82,8 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:background="@drawable/day_cookie"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/main_view"
         app:layout_constraintStart_toEndOf="@id/btn_cookie"
         app:layout_constraintTop_toBottomOf="@id/btn_digit"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -91,7 +93,8 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:background="@drawable/day_digit"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/main_view"
         app:layout_constraintEnd_toStartOf="@+id/btn_yes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_color" />
@@ -147,6 +150,7 @@
     <TextView
         android:id="@+id/tv_color"
         style="@style/SimpleTextStyle"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
@@ -161,6 +165,7 @@
     <TextView
         android:id="@+id/tv_digit"
         style="@style/SimpleTextStyle"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
@@ -175,6 +180,7 @@
     <TextView
         android:id="@+id/tv_yes"
         style="@style/SimpleTextStyle"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
@@ -189,6 +195,7 @@
     <TextView
         android:id="@+id/tv_cookie"
         style="@style/SimpleTextStyle"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
@@ -203,40 +210,43 @@
     <ImageView
         android:id="@+id/iv_second_card"
         android:layout_width="120dp"
-        android:layout_height="240dp"
+        android:layout_height="120dp"
+        android:adjustViewBounds="true"
         android:src="@drawable/secondcard"
         app:layout_constraintBottom_toTopOf="@+id/main_view"
+        app:layout_constraintEnd_toStartOf="@+id/iv_third_card"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_click" />
 
     <ImageView
         android:id="@+id/iv_third_card"
         android:layout_width="120dp"
-        android:layout_height="240dp"
+        android:layout_height="120dp"
         android:src="@drawable/secondcard"
         app:layout_constraintBottom_toTopOf="@+id/main_view"
+        app:layout_constraintEnd_toStartOf="@+id/iv_fourth_card"
         app:layout_constraintStart_toEndOf="@+id/iv_second_card"
         app:layout_constraintTop_toBottomOf="@+id/tv_click" />
 
     <ImageView
         android:id="@+id/iv_fourth_card"
         android:layout_width="120dp"
-        android:layout_height="240dp"
+        android:layout_height="120dp"
         android:src="@drawable/secondcard"
-        app:layout_constraintBottom_toTopOf="@+id/main_view"
-        app:layout_constraintEnd_toStartOf="@+id/iv_first_card"
-        app:layout_constraintTop_toBottomOf="@+id/tv_click"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <ImageView
-        android:id="@+id/iv_first_card"
-        android:layout_width="120dp"
-        android:layout_height="240dp"
-        android:src="@drawable/secondcard"
+        app:layout_constraintStart_toEndOf="@+id/iv_third_card"
         app:layout_constraintBottom_toTopOf="@+id/main_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_click"
-        app:layout_constraintStart_toEndOf="iv"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_click" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_nav"
+        app:menu="@menu/bottom_nav_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/puple"
+        app:labelVisibilityMode="labeled"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

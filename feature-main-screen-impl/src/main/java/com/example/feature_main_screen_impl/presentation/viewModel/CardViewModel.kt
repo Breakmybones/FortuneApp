@@ -1,5 +1,6 @@
 package com.example.feature_main_screen_impl.presentation.viewModel
 
+import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -22,11 +23,14 @@ class CardViewModel(
     fun getRandomCard() {
         viewModelScope.launch {
             try {
-                if (!getCardUseCase().name.isNullOrEmpty())
+                if (!getCardUseCase().suit.isNullOrEmpty()) {
                     _randomCard.value = getCardUseCase()
+                    Log.e("card", _randomCard.value.toString())
+                }
             }
             catch (error: Throwable) {
                 _error.value = error
+                Log.e("card", error.toString())
             }
         }
     }

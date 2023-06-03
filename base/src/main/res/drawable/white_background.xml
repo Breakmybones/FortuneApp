@@ -6,7 +6,8 @@
     <solid android:color="@android:color/white"/>
 
     <!-- Установка радиуса закругления углов только у верхних двух углов -->
-    <corners android:radius="18dp"
-        android:topRightRadius="18dp"/>
+    <corners
+        android:topRightRadius="18dp"
+        android:topLeftRadius="18dp"/>
 
 </shape>

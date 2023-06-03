@@ -54,6 +54,8 @@ dependencies {
     implementation project(':base')
     implementation project(':feature-main-screen-api')
     implementation project(':feature-main-screen-impl')
+    implementation project(':feature-profile-screen-api')
+    implementation project(':feature-profile-screen-impl')
 
     //navigation
     implementation 'androidx.navigation:navigation-fragment:2.0.0-rc02'

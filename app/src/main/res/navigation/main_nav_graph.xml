@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/register_fragment"
-        android:name="com.example.featureregistrationimpl.presentation.RegistrationFragment"
+        android:name="com.example.featureregistrationimpl.presentation.fragment.RegistrationFragment"
         tools:layout="@layout/fragment_registration"
         android:label="fragment_registration"
         />
     <fragment
         android:id="@+id/login_fragment"
-        android:name="com.example.featureregistrationimpl.presentation.LoginFragment"
+        android:name="com.example.featureregistrationimpl.presentation.fragment.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login"/>
     <fragment
@@ -26,5 +26,39 @@
         android:name="com.example.feature_main_screen_impl.presentation.fragment.CardFragment"
         android:label="CardFragment"
         tools:layout="@layout/fragment_card"/>
+    <fragment
+        android:id="@+id/color_fragment"
+        android:name="com.example.feature_main_screen_impl.presentation.fragment.ColorFragment"
+        android:label="ColorFragment"
+        tools:layout="@layout/fragment_color"/>
+    <fragment
+        android:id="@+id/cookie_fragment"
+        android:name="com.example.feature_main_screen_impl.presentation.fragment.CookieFragment"
+        android:label="CookieFragment"
+        tools:layout="@layout/fragment_cookie"/>
+    <fragment
+        android:id="@+id/digit_fragment"
+        android:name="com.example.feature_main_screen_impl.presentation.fragment.DigitFragment"
+        android:label="DigitFragment"
+        tools:layout="@layout/fragment_digit"/>
+    <fragment
+        android:id="@+id/yes_fragment"
+        android:name="com.example.feature_main_screen_impl.presentation.fragment.YesFragment"
+        android:label="YesFragment"
+        tools:layout="@layout/fragment_yes"/>
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.example.feature_profile_screen_impl.presentation.fragment.MainProfileFragment"
+        android:label="MainProfileFragment">
+        <action
+            android:id="@+id/action_to_home"
+            app:destination="@+id/home_fragment"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/edit_profile_fragment"
+        android:name="com.example.feature_profile_screen_impl.presentation.fragment.EditProfileFragment"
+        android:label="EditProfileFragment" />
 
 </navigation>

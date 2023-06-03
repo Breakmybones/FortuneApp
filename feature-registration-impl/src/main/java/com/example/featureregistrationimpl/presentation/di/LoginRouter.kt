@@ -1,4 +1,4 @@
-package com.example.featureregistrationimpl.presentation
+package com.example.featureregistrationimpl.presentation.di
 
 import android.content.Context
 import com.example.feature_registration_api.domain.model.UserModel

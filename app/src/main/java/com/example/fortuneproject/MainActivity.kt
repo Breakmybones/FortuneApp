@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onDestroy() {
         super.onDestroy()
-//        navController?.let {
-//            navigator.detachNavController(it)
-//        }
+        navController?.let {
+            navigator.detachNavController(it)
+        }
     }
 }

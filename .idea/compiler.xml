@@ -7,6 +7,7 @@
       <module name="Fortune_Project.common" target="11" />
       <module name="Fortune_Project.database" target="11" />
       <module name="Fortune_Project.feature-main-screen-impl" target="11" />
+      <module name="Fortune_Project.feature-profile-screen-impl" target="11" />
       <module name="Fortune_Project.feature-registration-impl" target="11" />
       <module name="Fortune_Project.mylibrary" target="11" />
       <module name="Fortune_Project.network" target="11" />

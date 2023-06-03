@@ -5,8 +5,11 @@ import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.database.DataBaseRepository
+import com.example.database.model.UserLocal
 import com.example.feature_registration_api.domain.model.UserModel
 import com.example.featureregistrationimpl.domain.LoginUserUseCase
+import com.example.featureregistrationimpl.presentation.di.LoginRouter
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
@@ -24,11 +27,20 @@ class LoginViewModel(
         get()  = _error
 
 
-    fun loginUser(context: Context, email: String, password: String) {
+    fun loginUser(context: Context, email: String, password: String, repository: DataBaseRepository) {
         viewModelScope.launch {
             try {
                 if (!loginUserUseCase(email, password).username.isNullOrEmpty()) {
                     _userLiveData.value = loginUserUseCase(email, password)
+                    Log.e("user", _userLiveData.value.toString())
+                    repository.addUser(
+                        UserLocal(
+                            _userLiveData.value?.email.toString(),
+                            _userLiveData.value?.username.toString(),
+                            _userLiveData.value?.dayOfBirth.toString(),
+                            _userLiveData.value?.male
+                        )
+                    )
                 }
             }
             catch (error: Throwable) {
@@ -41,19 +53,6 @@ class LoginViewModel(
         router.openRegister()
     }
 
-    fun loginClick(context: Context, email: String, password: String) {
-        viewModelScope.launch {
-            try {
-                if (!loginUserUseCase(email, password).email.isNullOrEmpty())
-                    _userLiveData.value = loginUserUseCase(email, password)
-                router.openHome()
-            }
-            catch (error: Throwable) {
-                _error.value = error
-            }
-        }
-        router.openHome()
-    }
 
     companion object {
         fun provideFactory(

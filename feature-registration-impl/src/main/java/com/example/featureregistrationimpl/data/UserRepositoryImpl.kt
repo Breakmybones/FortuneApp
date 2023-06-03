@@ -1,5 +1,6 @@
 package com.example.featureregistrationimpl.data
 
+import android.util.Log
 import com.example.feature_registration_api.domain.interfaces.UserRepository
 import com.example.feature_registration_api.domain.model.UserModel
 import com.example.featureregistrationimpl.di.TaroApi

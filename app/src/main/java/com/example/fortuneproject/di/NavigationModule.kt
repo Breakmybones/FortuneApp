@@ -1,8 +1,10 @@
 package com.example.fortuneproject.di
 
 import com.example.feature_main_screen_impl.presentation.di.MainRouter
-import com.example.featureregistrationimpl.presentation.LoginRouter
-import com.example.featureregistrationimpl.presentation.RegisterRouter
+import com.example.feature_profile_screen_impl.presentation.di.EditProfileRouter
+import com.example.feature_profile_screen_impl.presentation.di.ProfileRouter
+import com.example.featureregistrationimpl.presentation.di.LoginRouter
+import com.example.featureregistrationimpl.presentation.di.RegisterRouter
 import com.example.featureregistrationimpl.presentation.di.ApplicationScope
 import dagger.Module
 import dagger.Provides
@@ -26,4 +28,12 @@ class NavigationModule {
     @ApplicationScope
     @Provides
     fun provideHomeRouter(navigator: Navigator): MainRouter = navigator
+
+    @ApplicationScope
+    @Provides
+    fun provideProfileRouter(navigator: Navigator): ProfileRouter = navigator
+
+    @ApplicationScope
+    @Provides
+    fun provideEditProfileRouter(navigator: Navigator): EditProfileRouter = navigator
 }

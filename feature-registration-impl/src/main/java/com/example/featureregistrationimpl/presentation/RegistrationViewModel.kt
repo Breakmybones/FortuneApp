@@ -1,14 +1,13 @@
 package com.example.featureregistrationimpl.presentation
 
-import android.widget.Toast
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.feature_registration_api.domain.model.UserModel
 import com.example.featureregistrationimpl.domain.LoginUserUseCase
 import com.example.featureregistrationimpl.domain.RegisterUserUseCase
+import com.example.featureregistrationimpl.presentation.di.RegisterRouter
 import kotlinx.coroutines.launch
-import java.time.Instant
 
 class RegistrationViewModel(
     private val router: RegisterRouter,
@@ -42,7 +41,6 @@ class RegistrationViewModel(
                 )
                 if (!loginUserUseCase(email, password).email.toString().isNullOrEmpty())
                     _user.value = loginUserUseCase(email, password)
-//                router.openHome()
             }
             catch (error: Throwable) {
                 _error.value = error
