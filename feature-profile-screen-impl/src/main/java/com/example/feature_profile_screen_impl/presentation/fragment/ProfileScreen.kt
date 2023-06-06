@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
-import com.example.feature_profile_screen_api.model.UserProfileModel
+import com.example.feature_profile_screen_impl.data.model.UserProfileModel
 import com.example.feature_profile_screen_impl.R
 
 @Composable

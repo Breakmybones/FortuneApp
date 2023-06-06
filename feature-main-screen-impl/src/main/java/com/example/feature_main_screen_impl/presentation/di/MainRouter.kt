@@ -19,4 +19,6 @@ interface MainRouter {
     fun openYesOrNo()
 
     fun openCookie()
+
+    fun openAligment()
 }

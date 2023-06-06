@@ -8,7 +8,7 @@ import kotlinx.coroutines.withContext
 
 class GetCardUseCase(
     private val cardRepository: CardRepository,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.Main
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
     suspend operator fun invoke(): CardModel {
         return withContext(dispatcher) {

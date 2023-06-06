@@ -1,7 +1,7 @@
 package com.example.feature_profile_screen_impl.domain
 
-import com.example.feature_profile_screen_api.interfaces.UserProfileRepository
-import com.example.feature_profile_screen_api.model.UserProfileModel
+import com.example.feature_profile_screen_impl.data.UserProfileRepository
+import com.example.feature_profile_screen_impl.data.model.UserProfileModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

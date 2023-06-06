@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.feature_main_screen_api.model.CookieModel
 import com.example.feature_main_screen_impl.R
 import com.example.feature_main_screen_impl.databinding.FragmentColorBinding
 import com.example.feature_main_screen_impl.databinding.FragmentCookieBinding
@@ -25,6 +26,8 @@ class CookieFragment : Fragment(R.layout.fragment_cookie) {
     @Inject
     lateinit var getCookieUseCase: GetCookieUseCase
 
+    private var isViewModelInitialized = false
+
     private val viewModel: CookieViewModel by viewModels {
         CookieViewModel.provideFactory(
             getCookieUseCase
@@ -43,14 +46,17 @@ class CookieFragment : Fragment(R.layout.fragment_cookie) {
 
         binding = FragmentCookieBinding.bind(view)
 
+        showProgressBar()
+
         getRandomCookie()
 
         observeViewModel()
     }
 
-    private fun setRandomCookie(cookie: String?) {
+    private fun setRandomCookie(cookie: CookieModel?) {
         binding?.run {
-            tvDes.text = cookie
+            tvDes.text = cookie?.description
+            isViewModelInitialized = true
         }
     }
 
@@ -60,10 +66,21 @@ class CookieFragment : Fragment(R.layout.fragment_cookie) {
         }
     }
 
+    private fun showProgressBar() {
+        binding?.progressBar?.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        if (isViewModelInitialized) { // Проверяем, что ViewModel уже была инициализирована
+            binding?.progressBar?.visibility = View.GONE
+        }
+    }
+
     private fun observeViewModel() {
         viewModel.randomCookie.observe(viewLifecycleOwner) {
             if (it == null) return@observe
             setRandomCookie(it)
+            hideProgressBar()
         }
     }
 }

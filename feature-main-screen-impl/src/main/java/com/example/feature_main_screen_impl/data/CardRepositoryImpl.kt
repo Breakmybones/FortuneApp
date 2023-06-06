@@ -1,8 +1,7 @@
 package com.example.feature_main_screen_impl.data
 
-import android.util.Log
 import com.example.feature_main_screen_api.interfaces.CardRepository
-import com.example.feature_main_screen_api.model.CardModel
+import com.example.feature_main_screen_api.model.*
 import com.example.feature_main_screen_impl.di.CardApi
 
 class CardRepositoryImpl(
@@ -18,19 +17,33 @@ class CardRepositoryImpl(
         )
     }
 
-    override suspend fun getRandomDigit(): Map<String, String> {
-        return api.getNumber()
+    override suspend fun getRandomDigit(): DigitModel {
+        val response = api.getNumber()
+        return DigitModel(
+            number = response.number.toString(),
+            description = response.description
+        )
     }
 
-    override suspend fun getRandomColor(): Map<String, String> {
-        return api.getColor()
+    override suspend fun getRandomColor(): ColorModel {
+        val response = api.getColor()
+        return ColorModel(
+            color = response.color,
+            description = response.description
+        )
     }
 
-    override suspend fun getRandomYes(): String {
-        return api.getYes()
+    override suspend fun getRandomYes(): YesModel {
+        val response =  api.getYes()
+        return YesModel(
+            description = response.description
+        )
     }
 
-    override suspend fun getRandomCookie(): String {
-        return api.getCookie()
+    override suspend fun getRandomCookie(): CookieModel {
+        val response =  api.getCookie()
+        return CookieModel(
+            description = response.description
+        )
     }
 }

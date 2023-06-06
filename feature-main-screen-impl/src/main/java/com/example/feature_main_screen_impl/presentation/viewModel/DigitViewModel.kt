@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.feature_main_screen_api.model.DigitModel
 import com.example.feature_main_screen_impl.domain.GetDigitUseCase
 import kotlinx.coroutines.launch
 
@@ -11,8 +12,8 @@ class DigitViewModel(
     private val getDigitUseCase: GetDigitUseCase
 ): ViewModel() {
 
-    private val _randomDigit = MutableLiveData<Map<String, String>?>(null)
-    val randomDigit: LiveData<Map<String, String>?>
+    private val _randomDigit = MutableLiveData<DigitModel?>(null)
+    val randomDigit: LiveData<DigitModel?>
         get() = _randomDigit
 
     private val _error = MutableLiveData<Throwable?>(null)
@@ -22,7 +23,7 @@ class DigitViewModel(
     fun getRandomDigit() {
         viewModelScope.launch {
             try {
-                if (!getDigitUseCase().isNullOrEmpty()) {
+                if (!(getDigitUseCase() == null)) {
                     _randomDigit.value = getDigitUseCase()
                     Log.e("digit", _randomDigit.value.toString())
                 }

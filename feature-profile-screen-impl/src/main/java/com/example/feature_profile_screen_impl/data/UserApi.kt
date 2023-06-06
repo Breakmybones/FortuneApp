@@ -1,6 +1,6 @@
 package com.example.feature_profile_screen_impl.data
 
-import com.example.feature_profile_screen_api.model.UserProfileModel
+import com.example.feature_profile_screen_impl.data.model.UserProfileModel
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

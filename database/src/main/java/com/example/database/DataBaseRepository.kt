@@ -1,6 +1,7 @@
 package com.example.database
 
 import android.content.Context
+import android.net.Uri
 import androidx.room.Room
 import com.example.database.model.*
 
@@ -28,29 +29,14 @@ class DataBaseRepository(context: Context) {
         return userDao.findUser()
     }
 
-    suspend fun updateUser(male: Boolean, username: String, birth: String, email: String) {
-        userDao.updateUser(male, username, birth, email)
-    }
-
-    suspend fun setNewEmail(newEmail: String, oldEmail: String) {
-        userDao.setNewEmail(newEmail, oldEmail)
-    }
-
-    suspend fun setNewMale(male: Boolean, email: String) {
-        userDao.setNewMale(male, email)
-    }
-
-    suspend fun setNewUsername(username: String, email: String) {
-        userDao.setNewUsername(username, email)
+    suspend fun updateUser(male: Boolean, username: String, birth: String, email: String, sign: String, icon: Uri) {
+        userDao.updateUser(male, username, birth, email, sign, icon)
     }
 
     suspend fun deleteUser(user: UserLocal) {
         userDao.delete(user)
     }
 
-    suspend fun setNewBirth(birth: String, email: String) {
-        userDao.setNewBirth(birth, email)
-    }
 
     suspend fun addCard(cardLocal: CardLocal) {
         dayDao.addCard(cardLocal)

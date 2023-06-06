@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.feature_main_screen_api.model.YesModel
 import com.example.feature_main_screen_impl.domain.GetCookieUseCase
 import com.example.feature_main_screen_impl.domain.GetYesUseCase
 import kotlinx.coroutines.launch
@@ -12,8 +13,8 @@ class YesViewModel(
     private val getYesUseCase: GetYesUseCase
 ): ViewModel() {
 
-    private val _randomYes = MutableLiveData<String?>(null)
-    val randomYes: LiveData<String?>
+    private val _randomYes = MutableLiveData<YesModel?>(null)
+    val randomYes: LiveData<YesModel?>
         get() = _randomYes
 
     private val _error = MutableLiveData<Throwable?>(null)
@@ -23,7 +24,7 @@ class YesViewModel(
     fun getRandomYes() {
         viewModelScope.launch {
             try {
-                if (!getYesUseCase().isNullOrEmpty()) {
+                if (!(getYesUseCase() == null)) {
                     _randomYes.value = getYesUseCase()
                     Log.e("digit", _randomYes.value.toString())
                 }

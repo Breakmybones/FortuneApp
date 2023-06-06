@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.feature_main_screen_api.model.CardModel
+import com.example.feature_main_screen_api.model.YesModel
 import com.example.feature_main_screen_impl.R
 import com.example.feature_main_screen_impl.databinding.FragmentYesBinding
 import com.example.feature_main_screen_impl.domain.GetYesUseCase
@@ -23,6 +24,8 @@ class YesFragment : Fragment(R.layout.fragment_yes) {
 
     @Inject
     lateinit var getYesUseCase: GetYesUseCase
+
+    private var isViewModelInitialized = false
 
     private val viewModel: YesViewModel by viewModels {
         YesViewModel.provideFactory(
@@ -42,14 +45,17 @@ class YesFragment : Fragment(R.layout.fragment_yes) {
 
         binding = FragmentYesBinding.bind(view)
 
+        showProgressBar()
+
         getRandomYes()
 
         observeViewModel()
     }
 
-    private fun setRandomYes(yes: String?) {
+    private fun setRandomYes(yes: YesModel?) {
         binding?.run {
-            tvDes.text = yes
+            tvDes.text = yes?.description
+            isViewModelInitialized = true
         }
     }
 
@@ -59,10 +65,21 @@ class YesFragment : Fragment(R.layout.fragment_yes) {
         }
     }
 
+    private fun showProgressBar() {
+        binding?.progressBar?.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        if (isViewModelInitialized) { // Проверяем, что ViewModel уже была инициализирована
+            binding?.progressBar?.visibility = View.GONE
+        }
+    }
+
     private fun observeViewModel() {
         viewModel.randomYes.observe(viewLifecycleOwner) {
             if (it == null) return@observe
             setRandomYes(it)
+            hideProgressBar()
         }
     }
 }

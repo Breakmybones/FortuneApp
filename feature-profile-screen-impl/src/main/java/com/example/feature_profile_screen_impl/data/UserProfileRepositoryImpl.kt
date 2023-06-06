@@ -1,7 +1,8 @@
 package com.example.feature_profile_screen_impl.data
 
-import com.example.feature_profile_screen_api.interfaces.UserProfileRepository
-import com.example.feature_profile_screen_api.model.UserProfileModel
+import android.net.Uri
+import com.example.feature_profile_screen_impl.data.model.UserProfileModel
+import com.example.feature_profile_screen_impl.presentation.fragment.utils.getZodiacSign
 
 class UserProfileRepositoryImpl(
     private val api: UserApi
@@ -13,6 +14,8 @@ class UserProfileRepositoryImpl(
             email = response.email,
             dayOfBirth = response.birth.toString(),
             male = response.male,
+            sign = getZodiacSign(response.birth.toString()),
+            icon = Uri.parse("")
         )
     }
 

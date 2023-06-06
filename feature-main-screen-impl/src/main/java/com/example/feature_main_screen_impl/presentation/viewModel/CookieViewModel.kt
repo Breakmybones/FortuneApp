@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.feature_main_screen_api.model.CookieModel
 import com.example.feature_main_screen_impl.domain.GetCookieUseCase
 import com.example.feature_main_screen_impl.domain.GetDigitUseCase
 import kotlinx.coroutines.launch
@@ -12,8 +13,8 @@ class CookieViewModel(
     private val getCookieUseCase: GetCookieUseCase
 ): ViewModel() {
 
-    private val _randomCookie = MutableLiveData<String?>(null)
-    val randomCookie: LiveData<String?>
+    private val _randomCookie = MutableLiveData<CookieModel?>(null)
+    val randomCookie: LiveData<CookieModel?>
         get() = _randomCookie
 
     private val _error = MutableLiveData<Throwable?>(null)
@@ -23,7 +24,7 @@ class CookieViewModel(
     fun getRandomCookie() {
         viewModelScope.launch {
             try {
-                if (!getCookieUseCase().isNullOrEmpty()) {
+                if (!(getCookieUseCase() === null)) {
                     _randomCookie.value = getCookieUseCase()
                     Log.e("digit", _randomCookie.value.toString())
                 }

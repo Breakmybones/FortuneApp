@@ -8,15 +8,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -25,27 +23,22 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.database.DataBaseRepository
-import com.example.feature_profile_screen_api.model.UserProfileModel
+import com.example.feature_profile_screen_impl.data.model.UserProfileModel
 import com.example.feature_profile_screen_impl.R
 import com.example.feature_profile_screen_impl.domain.EditUserUseCase
 import com.example.feature_profile_screen_impl.domain.GetUserUseCase
 import com.example.feature_profile_screen_impl.presentation.di.ProfileRouter
 import com.example.feature_profile_screen_impl.presentation.di.ProfileScreenComponentProvider
-import com.example.feature_profile_screen_impl.presentation.fragment.utils.getZodiacSign
 import com.example.feature_profile_screen_impl.presentation.fragment.viewModel.EditProfileViewModel
 import com.example.feature_profile_screen_impl.presentation.theme.ComposeTestingTheme
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -91,7 +84,7 @@ class MainProfileFragment : Fragment() {
         repository = DataBaseRepository(requireContext())
         lifecycleScope.launch {
             val userBd = repository.findUser()
-            userProfile = UserProfileModel(userBd?.username, userBd?.email, userBd?.dayOfBirth, userBd?.male)
+            userProfile = UserProfileModel(userBd?.username, userBd?.email, userBd?.dayOfBirth, userBd?.male, userBd?.sign, userBd?.icon)
             setContentToProfileScreen()
         }
         return ComposeView(requireContext())
@@ -145,7 +138,7 @@ class MainProfileFragment : Fragment() {
                             router.openHomeFragment()
                         })
             }
-            ProfileImage()
+            ProfileImage(userProfile?.icon)
 
 
             Column(
@@ -224,7 +217,7 @@ class MainProfileFragment : Fragment() {
                     modifier = Modifier
                         .padding(start = 20.dp, bottom = 8.dp))
                 Text(
-                    text = getZodiacSign(userProfile?.dayOfBirth!!),
+                    text = (userProfile?.sign!!),
                     style = MaterialTheme.typography.body2,
                     color = Color(0xFF626161),
                     modifier = Modifier
@@ -300,27 +293,18 @@ class MainProfileFragment : Fragment() {
     }
 
     @Composable
-    fun ProfileImage() {
-        val imageUri = rememberSaveable {
-            mutableStateOf("")
-        }
+    fun ProfileImage(imageUri: Uri?) {
+
         val painter = rememberImagePainter(
-            if (imageUri.value.isEmpty())
+            if (imageUri.toString().isEmpty())
                 R.drawable.woman
             else
-                imageUri.value
+                imageUri
         )
-
-        val launcher = rememberLauncherForActivityResult(
-            contract = ActivityResultContracts.GetContent(),
-        ) { uri: Uri? ->
-            uri?.let { imageUri.value = it.toString() }
-
-        }
 
         Column(
             modifier = Modifier
-                .padding(end = 8.dp, top = 40.dp, start = 8.dp, bottom = 8.dp)
+                .padding(end = 8.dp, top = 24.dp, start = 8.dp, bottom = 8.dp)
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -334,8 +318,7 @@ class MainProfileFragment : Fragment() {
                     painter = painter,
                     contentDescription = null,
                     modifier = Modifier
-                        .wrapContentSize()
-                        .clickable { launcher.launch("image/*") },
+                        .wrapContentSize(),
                     contentScale = ContentScale.Crop
                 )
             }

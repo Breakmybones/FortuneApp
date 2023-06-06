@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.database.DataBaseRepository
 import com.example.feature_registration_api.domain.model.UserModel
 import com.example.featureregistrationimpl.R
 import com.example.featureregistrationimpl.databinding.FragmentRegistrationBinding
@@ -31,6 +32,8 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
     @Inject
     lateinit var router: RegisterRouter
 
+    lateinit var repository: DataBaseRepository
+
     private val viewModel: RegistrationViewModel by viewModels {
         RegistrationViewModel.provideFactory(
             router,
@@ -51,6 +54,8 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
         binding = FragmentRegistrationBinding.bind(view)
 
+        repository = DataBaseRepository(requireContext())
+
         binding?.run {
             btnRegister.setOnClickListener {
                 registerUser()
@@ -60,7 +65,6 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
     private fun registerUser() {
         binding?.apply {
-            val male = arrayOf("Женщина", "Мужчина")
             var flag = true
             val userName = etName.text.toString()
             val userEmail = etEmail.text.toString()
@@ -69,7 +73,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
             val userPassword2 = etPassword2.text.toString()
 
             val userMale: Boolean =  etMale.selectedItem.toString() != "Женщина"
-            if (userName.isNullOrEmpty()) {
+            if (userName.isEmpty()) {
                 etName.error = "Заполните имя"
                 etName.requestFocus()
                 flag = false
@@ -95,7 +99,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
                 flag = false
             }
             if (flag) {
-                viewModel.registerUser(userName, userEmail, userPassword, userBirth, userMale)
+                viewModel.registerUser(userName, userEmail, userPassword, userBirth, userMale, repository)
                 Toast.makeText(requireContext(), "Регистрация прошла", Toast.LENGTH_SHORT).show()
                 router.openHome()
             }

@@ -6,9 +6,18 @@
       <module name="Fortune_Project.base" target="11" />
       <module name="Fortune_Project.common" target="11" />
       <module name="Fortune_Project.database" target="11" />
+      <module name="Fortune_Project.feature-alignment-impl" target="11" />
+      <module name="Fortune_Project.feature-chat-api" target="17" />
+      <module name="Fortune_Project.feature-chat-api.main" target="17" />
+      <module name="Fortune_Project.feature-chat-api.test" target="17" />
+      <module name="Fortune_Project.feature-chat-impl" target="11" />
       <module name="Fortune_Project.feature-main-screen-impl" target="11" />
       <module name="Fortune_Project.feature-profile-screen-impl" target="11" />
       <module name="Fortune_Project.feature-registration-impl" target="11" />
+      <module name="Fortune_Project.feature-signs-api" target="17" />
+      <module name="Fortune_Project.feature-signs-api.main" target="17" />
+      <module name="Fortune_Project.feature-signs-api.test" target="17" />
+      <module name="Fortune_Project.feature-signs-impl" target="11" />
       <module name="Fortune_Project.mylibrary" target="11" />
       <module name="Fortune_Project.network" target="11" />
     </bytecodeTargetLevel>

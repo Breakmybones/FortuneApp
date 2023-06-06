@@ -10,9 +10,6 @@
     <item android:id="@+id/taro_bottom"
         android:title="Taro"
         android:icon="@drawable/card_bottom"/>
-    <item android:id="@+id/numbers_bottom"
-        android:title="Natal"
-        android:icon="@drawable/moon"/>
     <item android:id="@+id/zodiac_bottom"
         android:title="Zodiac"
         android:icon="@drawable/zodiac_bottom"/>

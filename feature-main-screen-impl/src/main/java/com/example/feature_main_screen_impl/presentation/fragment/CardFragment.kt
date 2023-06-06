@@ -26,6 +26,8 @@ class CardFragment : Fragment(R.layout.fragment_card) {
     @Inject
     lateinit var getCardUseCase: GetCardUseCase
 
+    private var isViewModelInitialized = false
+
     private val viewModel: CardViewModel by viewModels {
         CardViewModel.provideFactory(
             getCardUseCase
@@ -44,6 +46,8 @@ class CardFragment : Fragment(R.layout.fragment_card) {
 
         binding = FragmentCardBinding.bind(view)
 
+        showProgressBar()
+
         getRandomCard()
 
         observeViewModel()
@@ -51,14 +55,32 @@ class CardFragment : Fragment(R.layout.fragment_card) {
 
     private fun setRandomCard(card: CardModel) {
         binding?.run {
-            tvName.text = card.suit
-            tvDes.text = card.description
+            if (card.name == null) {
+                tvName.text = card.suit
+                tvDes.text = card.description
+            }
+            else {
+                tvName.text = card.name
+                tvDes.text = card.description
+            }
+
         }
     }
 
     private fun getRandomCard() {
         lifecycleScope.launch {
             viewModel.getRandomCard()
+            isViewModelInitialized = true
+        }
+    }
+
+    private fun showProgressBar() {
+        binding?.progressBar?.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        if (isViewModelInitialized) { // Проверяем, что ViewModel уже была инициализирована
+            binding?.progressBar?.visibility = View.GONE
         }
     }
 
@@ -66,6 +88,7 @@ class CardFragment : Fragment(R.layout.fragment_card) {
         viewModel.randomCard.observe(viewLifecycleOwner) {
             if (it == null) return@observe
             setRandomCard(it)
+            hideProgressBar()
         }
     }
 }

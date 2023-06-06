@@ -1,12 +1,16 @@
 package com.example.featureregistrationimpl.presentation
 
+import android.net.Uri
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.database.DataBaseRepository
+import com.example.database.model.UserLocal
 import com.example.feature_registration_api.domain.model.UserModel
 import com.example.featureregistrationimpl.domain.LoginUserUseCase
 import com.example.featureregistrationimpl.domain.RegisterUserUseCase
 import com.example.featureregistrationimpl.presentation.di.RegisterRouter
+import com.example.featureregistrationimpl.presentation.utils.getZodiacSign
 import kotlinx.coroutines.launch
 
 class RegistrationViewModel(
@@ -29,6 +33,7 @@ class RegistrationViewModel(
         password: String?,
         dayOfBirth: String?,
         male: Boolean?,
+        repository: DataBaseRepository
     ) {
         viewModelScope.launch {
             try {
@@ -39,8 +44,20 @@ class RegistrationViewModel(
                     dayOfBirth = dayOfBirth,
                     male = male,
                 )
-                if (!loginUserUseCase(email, password).email.toString().isNullOrEmpty())
+                if (!loginUserUseCase(email, password).email.toString().isNullOrEmpty()) {
                     _user.value = loginUserUseCase(email, password)
+                    repository.addUser(
+                        UserLocal(
+                            _user.value?.email.toString(),
+                            _user.value?.username.toString(),
+                            _user.value?.dayOfBirth.toString(),
+                            _user.value?.male,
+                            getZodiacSign(_user.value?.dayOfBirth.toString()),
+                            Uri.parse("")
+                        )
+                    )
+                }
+
             }
             catch (error: Throwable) {
                 _error.value = error

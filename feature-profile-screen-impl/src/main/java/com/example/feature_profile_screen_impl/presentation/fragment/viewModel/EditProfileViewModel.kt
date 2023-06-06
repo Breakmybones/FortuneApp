@@ -4,10 +4,9 @@ import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.feature_profile_screen_api.model.UserProfileModel
+import com.example.feature_profile_screen_impl.data.model.UserProfileModel
 import com.example.feature_profile_screen_impl.domain.EditUserUseCase
 import com.example.feature_profile_screen_impl.domain.GetUserUseCase
-import com.example.feature_profile_screen_impl.presentation.di.EditProfileRouter
 import com.example.feature_profile_screen_impl.presentation.di.ProfileRouter
 import kotlinx.coroutines.launch
 

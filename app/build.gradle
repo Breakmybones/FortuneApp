@@ -56,6 +56,14 @@ dependencies {
     implementation project(':feature-main-screen-impl')
     implementation project(':feature-profile-screen-api')
     implementation project(':feature-profile-screen-impl')
+    implementation project(':feature-alignment-api')
+    implementation project(':feature-alignment-impl')
+    implementation project(':feature-chat-api')
+    implementation project(':feature-chat-impl')
+    implementation project(':feature-signs-api')
+    implementation project(':feature-signs-impl')
+    implementation project(':database')
+
 
     //navigation
     implementation 'androidx.navigation:navigation-fragment:2.0.0-rc02'
@@ -64,10 +72,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
 
     implementation 'com.jakewharton.timber:timber:5.0.1'
-
-//
-//    implementation "android.arch.lifecycle:extensions:1.1.0"
-//    implementation "android.arch.lifecycle:viewmodel:1.1.0"
 
     def okhttp = '4.10.0'
     implementation "com.squareup.okhttp3:okhttp:$okhttp"

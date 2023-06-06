@@ -13,7 +13,9 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,10 +30,9 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.LifecycleCoroutineScope
 import coil.compose.rememberImagePainter
 import com.example.database.DataBaseRepository
-import com.example.feature_profile_screen_api.model.UserProfileModel
+import com.example.feature_profile_screen_impl.data.model.UserProfileModel
 import com.example.feature_profile_screen_impl.R
 import com.example.feature_profile_screen_impl.presentation.di.ProfileRouter
-import com.example.feature_profile_screen_impl.presentation.fragment.utils.getZodiacSign
 import com.example.feature_profile_screen_impl.presentation.fragment.viewModel.EditProfileViewModel
 import kotlinx.coroutines.launch
 
@@ -44,8 +45,14 @@ fun EditProfileScreen(user: UserProfileModel, repository: DataBaseRepository, sc
         notification.value = ""
     }
 
+    val imageUri = remember { mutableStateOf<Uri?>(null) }
+
+    val newImage = rememberSaveable() {
+        mutableStateOf<Uri?>(null)
+    }
+
     val selectedName = rememberSaveable() {
-        mutableStateOf(getZodiacSign(user.dayOfBirth!!))
+        mutableStateOf((user.sign))
     }
 
     val signs = listOf("Овен", "Телец", "Близнецы", "Рак",
@@ -93,18 +100,26 @@ fun EditProfileScreen(user: UserProfileModel, repository: DataBaseRepository, sc
                     .clickable {
                         notification.value = "Изменения сохранены"
                         scope.launch {
-                            repository.updateUser(booleanMale(male.value), username.value!!, selectedName.value, email.value!!)
+                            if (newImage.value == null) {
+                                repository.updateUser(booleanMale(male.value), username.value!!, user.dayOfBirth!!, email.value!!, selectedName.value!!, user.icon!!)
+                            }
+                            else {
+                                repository.updateUser(booleanMale(male.value), username.value!!, user.dayOfBirth!!, email.value!!, selectedName.value!!,
+                                    newImage.value!!)
+                            }
                             viewModel.editUser(username.value!!, email.value!!, selectedName.value, booleanMale(male.value))
                         }
                         router.openProfile()
                     })
         }
-        EditProfileImage()
+        EditProfileImage(imageUri = imageUri) { updatedUri ->
+            newImage.value = updatedUri
+        }
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 10.dp, end = 4.dp, top = 32.dp),
+                .padding(start = 10.dp, end = 4.dp, top = 16.dp),
             horizontalAlignment = Alignment.Start
         ) {
             Text(text = "Никнейм:",
@@ -177,11 +192,13 @@ fun EditProfileScreen(user: UserProfileModel, repository: DataBaseRepository, sc
                 color = Color(0xFF626161),
                 modifier = Modifier
                     .padding(start = 16.dp, bottom = 8.dp))
-            Spinner(
-                itemList = signs,
-                selectedItem = selectedName.value,
-                onItemSelected = { selectedName.value = it },
-            )
+            selectedName.value?.let {
+                Spinner(
+                    itemList = signs,
+                    selectedItem = it,
+                    onItemSelected = { selectedName.value = it },
+                )
+            }
         }
 
         Column(
@@ -221,12 +238,10 @@ fun EditProfileScreen(user: UserProfileModel, repository: DataBaseRepository, sc
 
 
 @Composable
-fun EditProfileImage() {
-    val imageUri = rememberSaveable {
-        mutableStateOf("")
-    }
+fun EditProfileImage(imageUri: MutableState<Uri?>, onUpdateImageUri: (Uri?) -> Unit) {
+
     val painter = rememberImagePainter(
-        if (imageUri.value.isEmpty())
+        if (imageUri.value == null)
             R.drawable.woman
         else
             imageUri.value
@@ -235,8 +250,10 @@ fun EditProfileImage() {
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent(),
     ) { uri: Uri? ->
-        uri?.let { imageUri.value = it.toString() }
-
+        uri?.let { updatedUri ->
+            imageUri.value = updatedUri
+            onUpdateImageUri(updatedUri) // Вызов колбэка onUpdateImageUri для передачи обновленного значения imageUri
+        }
     }
 
     Column(

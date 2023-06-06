@@ -1,17 +1,17 @@
 package com.example.feature_main_screen_api.interfaces
 
-import com.example.feature_main_screen_api.model.CardModel
+import com.example.feature_main_screen_api.model.*
 
 interface CardRepository {
 
     suspend fun getRandomCard(): CardModel
 
-    suspend fun getRandomDigit(): Map<String, String>
+    suspend fun getRandomDigit(): DigitModel
 
-    suspend fun getRandomColor(): Map<String, String>
+    suspend fun getRandomColor(): ColorModel
 
-    suspend fun getRandomYes(): String
+    suspend fun getRandomYes(): YesModel
 
-    suspend fun getRandomCookie(): String
+    suspend fun getRandomCookie(): CookieModel
 
 }

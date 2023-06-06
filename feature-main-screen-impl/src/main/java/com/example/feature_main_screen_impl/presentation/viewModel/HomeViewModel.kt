@@ -38,22 +38,6 @@ class HomeViewModel(
 
     }
 
-    fun navigateToProfile() {
-        router.openProfile()
-    }
-
-    fun navigateToFortune() {
-        router.openFortune()
-    }
-
-    fun navigateToZodiac() {
-        router.openZodiac()
-    }
-
-    fun navigateToNumbers() {
-        router.openNumbers()
-    }
-
     companion object {
         fun provideFactory(
             router: MainRouter,

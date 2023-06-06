@@ -1,7 +1,9 @@
 package com.example.featureregistrationimpl.presentation
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -10,6 +12,7 @@ import com.example.database.model.UserLocal
 import com.example.feature_registration_api.domain.model.UserModel
 import com.example.featureregistrationimpl.domain.LoginUserUseCase
 import com.example.featureregistrationimpl.presentation.di.LoginRouter
+import com.example.featureregistrationimpl.presentation.utils.getZodiacSign
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
@@ -32,22 +35,30 @@ class LoginViewModel(
             try {
                 if (!loginUserUseCase(email, password).username.isNullOrEmpty()) {
                     _userLiveData.value = loginUserUseCase(email, password)
-                    Log.e("user", _userLiveData.value.toString())
                     repository.addUser(
                         UserLocal(
                             _userLiveData.value?.email.toString(),
                             _userLiveData.value?.username.toString(),
                             _userLiveData.value?.dayOfBirth.toString(),
-                            _userLiveData.value?.male
+                            _userLiveData.value?.male,
+                            getZodiacSign(_userLiveData.value?.dayOfBirth.toString()),
+                            Uri.parse("")
                         )
                     )
+                    loginClick()
                 }
             }
             catch (error: Throwable) {
-                _error.value = error
+                Toast.makeText(context, "Такого пользователя не существует", Toast.LENGTH_SHORT).show()
+                Log.e("error", error.toString())
             }
         }
     }
+
+    private fun loginClick() {
+        router.openHome()
+    }
+
 
     fun registerClick() {
         router.openRegister()

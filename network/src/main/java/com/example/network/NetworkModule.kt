@@ -39,23 +39,10 @@ class NetworkModule {
         val retrofit = Retrofit.Builder()
             .client(httpClient)
             .addConverterFactory(gsonFactory)
-            .baseUrl("http://172.20.10.3:8080")
+            .baseUrl("http://192.168.226.18:8080")
             .build()
         return retrofit
     }
-
-//    @Provides
-//    fun provideOkhttpRequest(
-//        httpClient: OkHttpClient,
-//        gsonFactory: GsonConverterFactory,
-//    ): String {
-//        val request = Request.Builder()
-//            .url("https://192.168.1.22:8080")
-//            .build()
-//        val call = httpClient.newCall(request)
-//        val response = call.execute()
-//        return response.body?.string() ?: ""
-//    }
 
     @Provides
     fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()

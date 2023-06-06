@@ -55,8 +55,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 val email = etEmail.text.toString()
                 val password = etPassword.text.toString()
                 viewModel.loginUser(requireContext(), email, password, repository)
-                router.openHome()
-
             }
             tvRegister.setOnClickListener {
                 viewModel.registerClick()

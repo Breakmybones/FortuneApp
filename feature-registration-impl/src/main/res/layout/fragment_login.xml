@@ -28,7 +28,7 @@
         style="@style/EditTextStyle"
         android:layout_marginTop="110dp"
         android:layout_gravity="center"
-        android:hint="Почта"
+        android:hint="Никнейм"
         android:inputType="text" />
 
     <EditText

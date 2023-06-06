@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -92,33 +91,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         rotateOutFirst.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator?) {
-                // По завершении первой анимации заменяем изображение
                 imageViewFirst.setImageResource(R.drawable.firstcard)
-
-
-                // Запускаем вторую анимацию
                 rotateInFirst.start()
             }
         })
 
         rotateOutSecond.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator?) {
-                // По завершении первой анимации заменяем изображение
                 imageViewSecond.setImageResource(R.drawable.firstcard)
-
-
-                // Запускаем вторую анимацию
                 rotateInSecond.start()
             }
         })
 
         rotateOutThird.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator?) {
-                // По завершении первой анимации заменяем изображение
                 imageViewThird.setImageResource(R.drawable.firstcard)
-
-
-                // Запускаем вторую анимацию
                 rotateInThird.start()
             }
         })
@@ -188,11 +175,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     return@setOnItemSelectedListener true
                 }
                 com.example.base.R.id.taro_bottom -> {
-                    router.openFortune()
+                    router.openAligment()
                     return@setOnItemSelectedListener true
-                }
-                com.example.base.R.id.numbers_bottom -> {
-                    router.openNumbers()
                 }
                 com.example.base.R.id.zodiac_bottom -> {
                     router.openZodiac()
@@ -201,10 +185,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
             false
         }
-
         observeViewModel()
-
-
     }
 
     private fun observeViewModel() {

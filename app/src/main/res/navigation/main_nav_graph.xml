@@ -61,4 +61,110 @@
         android:name="com.example.feature_profile_screen_impl.presentation.fragment.EditProfileFragment"
         android:label="EditProfileFragment" />
 
+    <fragment
+        android:id="@+id/fragment_alignments"
+        android:name="com.example.feature_alignment_impl.presentation.fragments.AlignmentsFragment"
+        tools:layout="@layout/fragment_alignments"
+        android:label="fragment_alignments"
+        >
+        <action
+            android:id="@+id/action_fragment_alignments_to_select_cards"
+            app:destination="@id/fragment_select_cards" />
+        <action
+            android:id="@+id/action_fragment_alignments_to_fragment_dialog"
+            app:destination="@id/fragment_dialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_select_cards"
+        android:name="com.example.feature_alignment_impl.presentation.fragments.SelectCardsFragment"
+        android:label="fragment_select_cards"
+        tools:layout="@layout/fragment_select_cards">
+        <action
+            android:id="@+id/action_select_cards_fragment_to_alignments_fragment"
+            app:destination="@id/fragment_alignments" />
+        <action
+            android:id="@+id/action_fragment_select_cards_to_yesNoFragment"
+            app:destination="@id/fragment_alignment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_alignment"
+        android:name="com.example.feature_alignment_impl.presentation.fragments.AlignmentFragment"
+        android:label="YesNoFragment"
+        tools:layout="@layout/fragment_alignment">
+        <action
+            android:id="@+id/action_fragment_alignment_to_detailFragment"
+            app:destination="@id/fragment_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_detail"
+        android:name="com.example.feature_alignment_impl.presentation.fragments.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail">
+        <action
+            android:id="@+id/action_fragment_detail_to_fragment_alignments"
+            app:destination="@id/fragment_alignments" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/fragment_dialog"
+        android:name="com.example.feature_alignment_impl.presentation.fragments.CustomDialogFragment"
+        android:label="CustomDialogFragment"
+        tools:layout="@layout/fragment_dialog">
+        <action
+            android:id="@+id/action_fragment_dialog_to_fragment_select_cards"
+            app:destination="@id/fragment_select_cards" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/loveListFragment"
+        android:name="com.example.feature_signs_impl.presentation.fragments.LoveListFragment"
+        android:label="LoveListFragment"
+        tools:layout="@layout/fragment_love_list">
+        <action
+            android:id="@+id/action_loveListFragment_to_zodiacInfoFragment"
+            app:destination="@id/zodiacInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/zodiacInfoFragment"
+        android:name="com.example.feature_signs_impl.presentation.fragments.ZodiacInfoFragment"
+        android:label="ZodiacInfoFragment"
+        tools:layout="@layout/fragment_zodiac_info">
+        <action
+            android:id="@+id/action_zodiacInfoFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.feature_chat_impl.presentation.fragment.ChatFragment"
+        android:label="ChatFragment"
+        tools:layout="@layout/fragment_chat">
+        <action
+            android:id="@+id/action_chatFragment_self"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/selectDialogFragment"
+        android:name="com.example.feature_signs_impl.presentation.fragments.SelectDialogFragment"
+        android:label="SelectDialogFragment"
+        tools:layout="@layout/fragment_select_dialog">
+        <action
+            android:id="@+id/action_selectDialogFragment_to_loveListFragment"
+            app:destination="@id/loveListFragment" />
+        <action
+            android:id="@+id/action_selectDialogFragment_to_friendshipListFragment"
+            app:destination="@id/friendshipListFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/friendshipListFragment"
+        android:name="com.example.feature_signs_impl.presentation.fragments.FriendshipListFragment"
+        android:label="FriendshipListFragment"
+        tools:layout="@layout/fragment_love_list">
+        <action
+            android:id="@+id/action_friendshipListFragment_to_zodiacInfoFragment"
+            app:destination="@id/zodiacInfoFragment" />
+    </fragment>
+
 </navigation>
+

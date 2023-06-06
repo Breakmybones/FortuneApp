@@ -13,12 +13,18 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base" />
             <option value="$PROJECT_DIR$/database" />
+            <option value="$PROJECT_DIR$/feature-alignment-api" />
+            <option value="$PROJECT_DIR$/feature-alignment-impl" />
+            <option value="$PROJECT_DIR$/feature-chat-api" />
+            <option value="$PROJECT_DIR$/feature-chat-impl" />
             <option value="$PROJECT_DIR$/feature-main-screen-api" />
             <option value="$PROJECT_DIR$/feature-main-screen-impl" />
             <option value="$PROJECT_DIR$/feature-profile-screen-api" />
             <option value="$PROJECT_DIR$/feature-profile-screen-impl" />
             <option value="$PROJECT_DIR$/feature-registration-api" />
             <option value="$PROJECT_DIR$/feature-registration-impl" />
+            <option value="$PROJECT_DIR$/feature-signs-api" />
+            <option value="$PROJECT_DIR$/feature-signs-impl" />
             <option value="$PROJECT_DIR$/network" />
           </set>
         </option>

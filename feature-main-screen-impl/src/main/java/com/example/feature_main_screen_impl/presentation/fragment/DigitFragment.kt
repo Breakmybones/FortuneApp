@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.feature_main_screen_api.model.DigitModel
 import com.example.feature_main_screen_impl.R
 import com.example.feature_main_screen_impl.databinding.FragmentDigitBinding
+import com.example.feature_main_screen_impl.domain.GetDigitUseCase
 import com.example.feature_main_screen_impl.domain.GetYesUseCase
 import com.example.feature_main_screen_impl.presentation.di.MainScreenComponentProvider
 import com.example.feature_main_screen_impl.presentation.viewModel.DigitViewModel
@@ -21,10 +23,12 @@ class DigitFragment : Fragment(R.layout.fragment_digit) {
     private var binding: FragmentDigitBinding? = null
 
     @Inject
-    lateinit var getDigitUseCase: GetYesUseCase
+    lateinit var getDigitUseCase: GetDigitUseCase
+
+    private var isViewModelInitialized = false
 
     private val viewModel: DigitViewModel by viewModels {
-        YesViewModel.provideFactory(
+        DigitViewModel.provideFactory(
             getDigitUseCase
         )
     }
@@ -41,21 +45,34 @@ class DigitFragment : Fragment(R.layout.fragment_digit) {
 
         binding = FragmentDigitBinding.bind(view)
 
+        showProgressBar()
+
         getRandomDigit()
 
         observeViewModel()
     }
 
-    private fun setRandomDigit(digit: Map<String, String>?) {
+    private fun setRandomDigit(digit: DigitModel?) {
         binding?.run {
-            tvName.text = digit?.values?.firstOrNull()
-            tvDes.text = digit?.values?.elementAtOrNull(1)
+            tvName.text = digit?.number
+            tvDes.text = digit?.description
         }
     }
 
     private fun getRandomDigit() {
         lifecycleScope.launch {
             viewModel.getRandomDigit()
+            isViewModelInitialized = true
+        }
+    }
+
+    private fun showProgressBar() {
+        binding?.progressBar?.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        if (isViewModelInitialized) { // Проверяем, что ViewModel уже была инициализирована
+            binding?.progressBar?.visibility = View.GONE
         }
     }
 
@@ -63,6 +80,7 @@ class DigitFragment : Fragment(R.layout.fragment_digit) {
         viewModel.randomDigit.observe(viewLifecycleOwner) {
             if (it == null) return@observe
             setRandomDigit(it)
+            hideProgressBar()
         }
     }
 

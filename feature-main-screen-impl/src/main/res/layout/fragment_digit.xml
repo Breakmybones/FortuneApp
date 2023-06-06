@@ -5,20 +5,21 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/white_background"
-    tools:context=".presentation.fragment.DigitFragment">
+    tools:context=".presentation.fragment.DigitFragment"
+    android:backgroundTint="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:fitsSystemWindows="true"
-        android:theme="@style/Theme.FortuneProject">
+        android:theme="@style/Theme.FortuneProject"
+        android:backgroundTint="@color/white">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/purple_500"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             android:id="@+id/collapsing_toolbar">
 
@@ -46,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:text="Число дня"
                 android:layout_gravity="center"
-                android:textColor="@color/grey"
+                android:textColor="#DF6F95"
                 android:layout_marginTop="100dp"/>
 
 
@@ -73,7 +74,14 @@
                 android:fontFamily="@font/alata"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="типо описание" />
+                android:text="" />
+
+            <ProgressBar
+                android:paddingTop="100dp"
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
